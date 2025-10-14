@@ -21,7 +21,6 @@ from modules import installer
 event_loop_verify = asyncio.Event()
 event_loop_answer = asyncio.Event()
 
-
 async def init_page(p: Playwright) -> tuple[Page, BrowserContext]:
     driver = "msedge" if config.driver == "edge" else config.driver
     logger.info(f"正在启动{config.driver}浏览器...")
@@ -266,6 +265,7 @@ if __name__ == "__main__":
             time.sleep(2)
             sys.exit(-1)
         asyncio.run(main())
+
     except TargetClosedError as e:
         logger.write_log(traceback.format_exc())
         if "BrowserType.launch" in repr(e):
@@ -273,6 +273,7 @@ if __name__ == "__main__":
             logger.info("如果仍然无法启动,请修改配置文件并使用Chrome浏览器")
         else:
             logger.error("浏览器被关闭,程序退出.")
+
     except Exception as e:
         logger.error(repr(e), shift=True)
         logger.write_log(traceback.format_exc())
@@ -284,6 +285,7 @@ if __name__ == "__main__":
             logger.error("配置文件编码错误,保存时请选择UTF-8或GBK编码!")
         else:
             logger.error("系统出错,请检查后重新启动!")
+
     finally:
         logger.save()
         input("程序已结束,按Enter退出...")
