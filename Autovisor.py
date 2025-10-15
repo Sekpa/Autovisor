@@ -202,8 +202,8 @@ async def main():
         logger.info("正在检查依赖库...")
         modules = installer.start()
         logger.info("所有依赖库安装完成!")
+    
     print("===== Runtime Log =====")
-
     async with async_playwright() as p:
         page, context = await init_page(p)
         # 进行登录
@@ -219,6 +219,7 @@ async def main():
         skip_ques_task = asyncio.create_task(skip_questions(page, event_loop_answer))
         play_video_task = asyncio.create_task(play_video(page))
         tasks.extend([verify_task, video_optimize_task, skip_ques_task, play_video_task])
+        
         # 隐藏窗口
         if config.enableHideWindow:
             window = await get_browser_window(page)
@@ -228,6 +229,7 @@ async def main():
 
         # 任务监视器
         monitor_task = asyncio.create_task(task_monitor(tasks))
+        
         # 遍历所有课程,加载网页
         for course_url in config.course_urls:
             print("==" * 10)
