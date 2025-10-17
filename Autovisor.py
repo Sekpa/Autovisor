@@ -12,7 +12,7 @@ from playwright._impl._errors import TargetClosedError
 from modules.logger import Logger
 from modules.configs import Config
 from modules.progress import get_course_progress, show_course_progress
-from modules.support import show_donate
+# from modules.support import show_donate
 from modules.utils import optimize_page, get_lesson_name, get_filtered_class, get_video_attr, hide_window, get_browser_window, bring_console_to_front, save_cookies, load_cookies
 from modules.slider import slider_verify
 from modules.tasks import video_optimize, play_video, skip_questions, wait_for_verify, activate_window, task_monitor
@@ -253,7 +253,7 @@ async def main():
             await working_loop(page, is_new_version=is_new_version, is_hike_class=is_hike_class)
     print("==" * 10)
     logger.info("所有课程已学习完毕!")
-    show_donate("res/QRcode.jpg")
+    # show_donate("res/QRcode.jpg")
     # 结束所有协程任务
     await asyncio.gather(*tasks, return_exceptions=True) if tasks else None
     await monitor_task
