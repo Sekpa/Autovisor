@@ -128,6 +128,7 @@ def start():
     modules = []
     sys.path.append("./res")
     mirror_name, base_url = None, None  # 避免重复测试镜像
+    
     for package, version in packages.items():
         module, exist = is_installed(package, version)
         if not exist:
